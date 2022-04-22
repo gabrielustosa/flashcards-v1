@@ -1,0 +1,25 @@
+{% load bootstrap5 %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %} {% endblock %}</title>
+    {% bootstrap_css %}
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Hubballi&family=Raleway:ital,wght@1,200&display=swap');
+
+        * {
+            font-family: 'Hubballi', cursive;
+        }
+    </style>
+</head>
+<body>
+<div class="bg-primary shadow">
+    <h1 class="text-center">Flashcard</h1>
+</div>
+{% block content %}
+
+{% endblock %}
+{% bootstrap_javascript %}
+</body>
+</html>

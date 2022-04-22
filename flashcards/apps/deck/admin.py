@@ -1,3 +1,8 @@
 from django.contrib import admin
 
-# Register your models here.
+from flashcards.apps.deck.models import Deck
+
+
+@admin.register(Deck)
+class DeckAdmin(admin.ModelAdmin):
+    list_display = ['id', 'name', 'description', 'author']

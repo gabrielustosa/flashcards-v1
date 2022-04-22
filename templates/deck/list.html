@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Página Incial
+{% endblock %}
+
+{% block content %}
+    <div class="container pt-4">
+        <div class="row">
+            {% for deck in decks %}
+                <div class="col pb-5">
+                    <div class="card" style="width: 35rem;">
+                        <div class="card-header">
+                            {{ deck.name }} #{{ deck.id }}
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title">{{ deck.name }}</h5>
+                            <p class="card-text">{{ deck.description }}</p>
+                            <a href="#" class="btn btn-primary">Estudar deck</a>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}
