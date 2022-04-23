@@ -16,7 +16,29 @@
                         <div class="card-body">
                             <h5 class="card-title">{{ deck.name }}</h5>
                             <p class="card-text">{{ deck.description }}</p>
-                            <a href="#" class="btn btn-primary">Estudar deck</a>
+                            <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                                    data-bs-target="#modal-{{ deck.id }}">
+                                Estudar deck
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal fade" id="modal-{{ deck.id }}" tabindex="-1" aria-labelledby="card modal"
+                     aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="modal-{{ deck.id }}">O que você gostaria de estudar?</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                        aria-label="Fechar"></button>
+                            </div>
+                            <div class="modal-body text-center">
+                                <a href="{% url 'card:view' deck.id %}">
+                                    <button type="button" class="btn btn-primary">Cartões</button>
+                                </a>
+                                <button type="button" class="btn btn-primary">Desafios</button>
+                                <button type="button" class="btn btn-primary">Escrever</button>
+                            </div>
                         </div>
                     </div>
                 </div>

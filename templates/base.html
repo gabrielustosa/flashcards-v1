@@ -1,6 +1,6 @@
 {% load bootstrap5 %}
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <title>{% block title %} {% endblock %}</title>
@@ -14,12 +14,13 @@
     </style>
 </head>
 <body>
-<div class="bg-primary shadow">
-    <h1 class="text-center">Flashcard</h1>
-</div>
-{% block content %}
-
-{% endblock %}
+<a href="{% url 'deck:index' %}" class="text-decoration-none text-dark">
+    <div class="bg-primary shadow">
+        <h1 class="text-center">Flashcard</h1>
+    </div>
+</a>
+{% block content %}{% endblock %}
+{% block javascript %}{% endblock %}
 {% bootstrap_javascript %}
 </body>
 </html>
