@@ -7,11 +7,20 @@
 
 {% block content %}
 
-    <div class="container pt-4">
-        <div class="d-flex justify-content-center align-items-center text-center shadow-lg" style="height: 40rem;">
-            <h1>{{ card.front }}</h1>
+    <div class="container pt-4" style="user-select: none;">
+        <div id="card" class="d-flex justify-content-center align-items-center text-center shadow-lg"
+             style="height: 40rem;">
+            <h1 id="card-text"></h1>
+        </div>
+        <div>
+            <div class="text-center pt-3" style="font-size: 30px;">
+                <i id="arrow-left" class="bi bi-caret-left-fill"></i>
+                <i id="arrow-right" class="bi bi-caret-right-fill"></i>
+            </div>
         </div>
     </div>
+
+    {{ deck.id|json_script:'id' }}
 {% endblock %}
 
 {% block javascript %}

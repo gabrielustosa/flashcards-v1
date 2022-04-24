@@ -11,5 +11,4 @@ class CardView(TemplateView):
         context = super().get_context_data(**kwargs)
         deck_id = self.kwargs.get('deck_id')
         context['deck'] = Deck.objects.get(pk=deck_id)
-        context['card'] = Card.objects.filter(deck_id=deck_id).first()
         return context
