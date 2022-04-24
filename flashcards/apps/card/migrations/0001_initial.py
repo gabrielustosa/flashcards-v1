@@ -2,7 +2,6 @@
 
 from django.db import migrations, models
 import django.db.models.deletion
-import flashcards.apps.card.fields
 
 
 class Migration(migrations.Migration):
@@ -21,7 +20,6 @@ class Migration(migrations.Migration):
                 ('front', models.CharField(max_length=50)),
                 ('back', models.CharField(max_length=100)),
                 ('sentence', models.CharField(max_length=200)),
-                ('order', flashcards.apps.card.fields.OrderField()),
                 ('deck', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='deck.deck')),
             ],
         ),

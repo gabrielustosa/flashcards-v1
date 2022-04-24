@@ -1,12 +1,11 @@
-from django.views.generic import TemplateView
+from django.views.generic import ListView
 
 from flashcards.apps.deck.models import Deck
 
 
-class DeckListView(TemplateView):
+class DeckListView(ListView):
     template_name = 'deck/list.html'
+    model = Deck
+    paginate_by = 6
+    context_object_name = 'decks'
 
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['decks'] = Deck.objects.all()
-        return context

@@ -11,6 +11,5 @@ class CardSerializer(serializers.ModelSerializer):
             'front',
             'back',
             'sentence',
-            'order',
             'deck',
         ]
