@@ -41,6 +41,7 @@ INSTALLED_APPS = [
 
     # 3rd apps
     'bootstrap5',
+    'rest_framework',
 
     # my apps
     'flashcards.apps.deck',
