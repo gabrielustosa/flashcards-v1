@@ -7,5 +7,8 @@ class Deck(models.Model):
     author = models.ForeignKey(User, on_delete=models.CASCADE)
     description = models.TextField()
 
+    class Meta:
+        ordering = ['id']
+
     def __str__(self):
         return self.name
