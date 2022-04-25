@@ -20,8 +20,8 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('flashcards.apps.deck.urls')),
     path('card/', include('flashcards.apps.card.urls')),
-    path('', include('flashcards.apps.card.api.urls')),
-    path('', include('flashcards.apps.deck.api.urls')),
     path('accounts/', include('django.contrib.auth.urls')),
     path('accounts/', include('flashcards.apps.user.urls')),
+    path('', include('flashcards.apps.card.api.urls')),
+    path('', include('flashcards.apps.deck.api.urls')),
 ]

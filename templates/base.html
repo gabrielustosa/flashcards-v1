@@ -29,8 +29,10 @@
                     Opções
                 </a>
                 <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <li><a class="dropdown-item" href="#">Criar Baralho</a></li>
-                    <li><a class="dropdown-item" href="#">Criar Carta</a></li>
+                    {% if user.is_staff %}
+                        <li><a class="dropdown-item" href="{% url 'deck:create' %}">Criar Baralho</a></li>
+                        <li><a class="dropdown-item" href="{% url 'card:create' %}">Criar Carta</a></li>
+                    {% endif %}
                     <li><a class="dropdown-item" href="{% url 'logout' %}">Deslogar</a></li>
                 </ul>
             {% else %}
