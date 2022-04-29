@@ -18,6 +18,7 @@ from django.urls import path, include
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('__debug__/', include('debug_toolbar.urls')),
     path('', include('flashcards.apps.deck.urls')),
     path('card/', include('flashcards.apps.card.urls')),
     path('accounts/', include('django.contrib.auth.urls')),

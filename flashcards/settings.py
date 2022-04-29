@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-4g(ndz#m4in_4+09$w@5@txw@v2*i0q06$*8on5o9%$5hf@zbr
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['lustosa-flashcards.herokuapp.com', ]
+ALLOWED_HOSTS = ['*']
 
 # Application definition
 
@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     # 3rd apps
     'bootstrap5',
     'rest_framework',
+    'debug_toolbar',
 
     # my apps
     'flashcards.apps.deck',
@@ -50,6 +51,7 @@ INSTALLED_APPS = [
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'debug_toolbar.middleware.DebugToolbarMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -83,12 +85,8 @@ WSGI_APPLICATION = 'flashcards.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'defnrfdavcig8o',
-        'USER': 'oavmifeyvrtpgf',
-        'PASSWORD': '42ae890cdb2c688f41664f13d94bf4cd76f08eede1f64932532eef09570c2ef3',
-        'HOST': 'ec2-52-203-118-49.compute-1.amazonaws.com',
-        'PORT': '5432',
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
 
@@ -142,3 +140,7 @@ LOGIN_REDIRECT_URL = 'deck:index'
 LOGOUT_REDIRECT_URL = 'deck:index'
 
 django_on_heroku.settings(locals())
+
+INTERNAL_IPS = [
+    "127.0.0.1",
+]
