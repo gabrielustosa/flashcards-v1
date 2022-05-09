@@ -31,7 +31,7 @@
             const deck_id = JSON.parse(document.getElementById('id').textContent);
 
             await fetch(
-                `http://127.0.0.1:8000/deck/api/v1/${deck_id}/`
+                `https://lustosa-flashcards.herokuapp.com/deck/api/v1/${deck_id}/`
             )
                 .then((response) => {
                     return response.json()
@@ -99,7 +99,7 @@
         }
 
         async function getCard(current) {
-            return await fetch(`http://127.0.0.1:8000/card/api/v1/${current}/`)
+            return await fetch(`https://lustosa-flashcards.herokuapp.com/card/api/v1/${current}/`)
                 .then((response) => {
                     return response.json()
                 })
