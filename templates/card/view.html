@@ -8,9 +8,11 @@
 {% block content %}
 
     <div class="container pt-4" style="user-select: none;">
-        <div id="card" class="d-flex justify-content-center align-items-center text-center shadow-lg"
+        <div id="card"
+             class="d-flex flex-column justify-content-center align-items-center text-center shadow-lg position-relative"
              style="height: 40rem;">
             <h1 id="card-text"></h1>
+            <h2 id="card-help" class="position-absolute bottom-0 start-0 m-3"></h2>
         </div>
         <div>
             <div class="text-center pt-3" style="font-size: 30px;">
@@ -24,5 +26,83 @@
 {% endblock %}
 
 {% block javascript %}
-    <script src="{% static 'js/cardview.js' %}"></script>
+    <script>
+        (async function () {
+            const deck_id = JSON.parse(document.getElementById('id').textContent);
+
+            await fetch(
+                `http://127.0.0.1:8000/deck/api/v1/${deck_id}/`
+            )
+                .then((response) => {
+                    return response.json()
+                })
+                .then(deck => {
+                    const card_text = document.getElementById('card-text')
+                    const card_help = document.getElementById('card-help')
+                    const card = document.getElementById('card')
+
+                    window.deck_cards = deck.cards
+                    const arrow_left = document.getElementById('arrow-left')
+                    const arrow_right = document.getElementById('arrow-right')
+
+                    let current = deck_cards[0]
+
+                    getCard(current).then((card) => {
+                        card_text.innerText = card.front
+                        card_help.innerText = card.sentence
+                    })
+
+
+                    arrow_left.addEventListener("click", () => {
+                        if (current !== deck_cards[0]) {
+                            current = getPreviousCard(current, deck_cards)
+                            getCard(current).then((card) => {
+                                card_text.innerText = card.front
+                                card_help.innerText = card.sentence
+
+                            })
+                        }
+                    })
+
+                    arrow_right.addEventListener("click", () => {
+                        if (current !== deck_cards[deck_cards.length - 1]) {
+                            current = getNextCard(current, deck_cards)
+                            getCard(current).then((card) => {
+                                card_text.innerText = card.front
+                                card_help.innerText = card.sentence
+                            })
+                        }
+                    })
+
+                    card.addEventListener("click", () => {
+                        getCard(current).then((card) => {
+                            if (card_text.innerText === card.front) {
+                                card_text.innerText = card.back
+                                card_help.innerText = ''
+                            } else {
+                                card_text.innerText = card.front
+                                card_help.innerText = card.sentence
+                            }
+                        })
+                    })
+                })
+        })();
+
+        function getNextCard(current, cards) {
+            let current_card = cards.indexOf(current)
+            return cards[current_card + 1]
+        }
+
+        function getPreviousCard(current, cards) {
+            let current_card = cards.indexOf(current)
+            return cards[current_card - 1]
+        }
+
+        async function getCard(current) {
+            return await fetch(`http://127.0.0.1:8000/card/api/v1/${current}/`)
+                .then((response) => {
+                    return response.json()
+                })
+        }
+    </script>
 {% endblock %}
